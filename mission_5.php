@@ -5,8 +5,6 @@
 	<title>mission5-1</title>
 </head>
 <body>
-<!-- 以下は投稿フォーム欄ですが、今は＆このままでは機能しません。
-ミッションを進める際にコピペして、そこに実装していきましょう -->
 
 <form action="mission_5-1.php" method="post" >
 	名前:<input type="text" name="name" value="name"><br>
@@ -26,14 +24,14 @@
 
 <?php
 
-//1
+//接続
 $dsn = 'mysql:dbname='データベース名';host=localhost';
 $user = 'ユーザー名';
 $password = 'パスワード';
 $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
 
 
-//2
+//テーブル作成
 $sql = "CREATE TABLE IF NOT EXISTS mission5"
 	." ("
 	. "id INT AUTO_INCREMENT PRIMARY KEY,"
@@ -104,7 +102,7 @@ if($rev){
 	$stmt->execute();
 }
 
-//掲示板表示(OKKKKKKKK)
+//掲示板表示
 $sql = 'SELECT * FROM mission5';
 	$stmt = $pdo->query($sql);
 	$results = $stmt->fetchAll();
@@ -114,6 +112,5 @@ $sql = 'SELECT * FROM mission5';
 		echo $row['name'].' ';
 		echo $row['comment'].' ';
 		echo $row['date'].' ';
-    echo $row['pass']."<br>";
 	echo "<hr>";
 	}
